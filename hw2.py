@@ -39,12 +39,20 @@ def countries_with_no_deaths_count(date: datetime.date) -> int:
     :param date: Date object of the date to get the results for
     :return: Number of countries with no deaths but with active cases on a given date as an integer
     """
-    
-    # Your code goes here
-    pass
+      data1 = format_date(date)
+      count = 0
+      for i in range(459):
+            if (dfD[data1].values[i] == 0 and dfC[data1].values[i]>0):
+                  count+=1
+      result = count
+      return result
 
 
 def more_cured_than_deaths_indices(date: datetime.date) -> List[int]:
+      data1 = format_date(date)
+      result = np.where(dfR[data1]>dfD[data1])
+      result = list(result)
+      return result
     """
     Returns table indices of areas (countries, region, provinces) in the data set
     with more cured cases than deaths on a given date. (DO NOT GROUP BY)
@@ -68,4 +76,3 @@ def more_cured_than_deaths_indices(date: datetime.date) -> List[int]:
     """
     
     # Your code goes here
-    pass
